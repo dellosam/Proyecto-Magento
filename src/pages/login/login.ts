@@ -42,7 +42,10 @@ export class LoginPage {
   //borralas y creas la tuyas con un nombre que quieras 
   //y haces lo de del navCtrl para que conectes los botones a las otras paginas, qie borre que?las paginas?
   //las funciones
- 
+
+  //constructor(private device: Device) { }
+  //console.log('Device UUID is: ' + this.device.uuid);  
+  
  
     ionViewDidLoad() {
     
