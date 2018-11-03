@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ServicioProvider } from '../../providers/servicio/servicio';
+import {MenuPage} from '../menu/menu'; 
+import { AlertController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -8,52 +11,85 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-    
+      
+  data = {
+    user : '',
+    pass : ''
+  }
     //NavParams permite recuperar esa informacion que mandamos de otra pagina
-        //el nombre de su alias esta ahi navParams lo puedes cambiar si quieres //no borres los coments de saviaqui //si vajaja
-        
-        /*aqui no, esto es login lo que pasa es que cuando el InAppBrowser abre el navegador de cordova
-        cuando accionas el botonno lo abre en una pagina me imagino que en el boton invitados
-        sera asi, no?
-        estas?sisya vi q s jaja------en el modulo q estan pesando a la gente, si pesas menos de lo q debes segun y q daran una bolsa disque modulo de informatica?..modulo de la plazoleta
-        jajajaja me estas diciendo flaquito?nah si no yo tmbn estuvieraalla..pero mi mama si se fue y robert y eliannis creo.. yo tengo comida aqui me da lala salir.ok camarada ajaja
-        voy a escuchar el audio de freedy ppara ver como es la cuestion se me perdio el audiovoy. te escribi por wss
-        bien ... vamos ahcer esto rapitido porque tengo que terminar una app
-        */
-        //aqui inyectamos el plugin ua va me confundi aqui no va CD
-  constructor(public navCtrl: NavController, public parametros: NavParams) {
-  }
-  
-  
-  //este metodo ionViewDibLoad es uno de los ciclos de vida de la pagina
-  //hay como 5 metodos
-  // un se ejecuta antes de cargar la pagina
-  // otro de ejecuta despues de cargar los componentes de la pagina
-  // otro antes de salir de la pagina 
-  // otro cuando ya la pagina se salio
-  
-  //este se ejecuta despues de que los componentes se cargan
-  
-  //quieres practicar con las otras paginas?
-  //o quieres hacer el login con los inputs?las otras paginas porque siento q me perdere
-  //vale yo te voy viendo cualquier duda comentas, yava por donde comienzo?jaja
-  //en las funciones de home las que cree
-  //borralas y creas la tuyas con un nombre que quieras 
-  //y haces lo de del navCtrl para que conectes los botones a las otras paginas, qie borre que?las paginas?
-  //las funciones
-
-  //constructor(private device: Device) { }
-  //console.log('Device UUID is: ' + this.device.uuid);  
-  
- 
-    ionViewDidLoad() {
     
-    //en typescript es obligatorio el this. para llamar a cualquier objeto o variable
-    //si no lo haces te marca error
-    
-    //parametros.get('_saludo') esa variable tiene que ser igual al alias que le colocamos en home
-    console.log(this.parametros.get('_saludo'));
-  }
-
+    //siempre tienes que especificar el encapsulamiento
+     //private public protected ..
+     constructor(public navCtrl: NavController, public parametros: NavParams,
+      private servicio: ServicioProvider, public alertCtrl: AlertController) {
 }
+IniciarSesion(){
+  //true
+      if(this.validarCampos()){
+        this.servicio.IniciarSesion(this.data.user, this.data.pass).subscribe(res=>{
+          // res es una variable...en este caso se utiliza por "respuesta"
+          //hace la consulta la obtengo con subscribe el cual llamo a la promesa
+          //res y lo transformo a json para que solo me diga true o false
+          //como lo programo freddy, retorna true
+          console.log(res.json())
+          if(res.json()){
+              //pasa al menu
+              this.navCtrl.push(MenuPage);
+            
+          }else{
+            //si no muestra este mensaje 
+            
+            this.mostrarAlerta('Error de credenciales','Usuario o Clave incorrectos')
+          }
+          
+        });//se ejecuta esto
+      }
+    }
+  
+    mostrarAlerta(titulo, msj) {
+      const alert = this.alertCtrl.create({
+        title: titulo, //title de la alerta
+        subTitle: msj,//mensaje de la laerta
+        buttons: ['Aceptar']//nombre del boton de la alerta
+      });
+      alert.present();
+    }
+  
+    
+    validarCampos(){
+      let valido = false;//
+      if(this.data.user.length != 0){
+        if(this.data.pass.length != 0){
+          valido = true;
+        }else{
+          this.mostrarAlerta('Error de Campo','El campo Password esta vacio');
+        }
+      }else{
+        this.mostrarAlerta('Error de Campo','El campo Usuario esta vacio');
+      }
+      
+      return valido;
+    }
+    
+    //este metodo ionViewDibLoad es uno de los ciclos de vida de la pagina
+    //hay como 5 metodos
+    // un se ejecuta antes de cargar la pagina
+    // otro de ejecuta despues de cargar los componentes de la pagina
+    // otro antes de salir de la pagina 
+    // otro cuando ya la pagina se salio
+    
+    //este se ejecuta despues de que los componentes se cargan
+    
+    
+      ionViewDidLoad() {
+      
+      //en typescript es obligatorio el this. para llamar a cualquier objeto o variable
+      //si no lo haces te marca error
+      
+      
+      console.log(this.parametros.get('_saludo'));
+    }
+  
+  }
+  
+  

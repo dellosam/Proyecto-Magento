@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content class="desplazada" >
-    <ion-card-header  color="negro" text-rigth>
-        <b> Si tienes una cuenta con nosotros, inicia sesión. </b> <br><br/> 
-        <b> *Campos requeridos </b> <br><br/>
+    <ion-card-header  color="dark" text-rigth>
+        <ion-label> Si tienes una cuenta con nosotros, inicia sesión. </ion-label> 
+        <ion-label> *Campos requeridos </ion-label> 
     </ion-card-header>
 
     <ion-card-content>
@@ -20,8 +20,8 @@
             </ion-item>
     </ion-list>
         
-     <!--pruebaaaaaa-->
-        <button ion-button block color="vinotinto">Ingresar</button>   
+     
+        <button ion-button block color="vinotinto" (click)= "IniciarSesion()" >Ingresar</button>   
         
         <ion-list>
     
