@@ -1,0 +1,27 @@
+page-home {
+    
+    .background{
+        background-image: url('../assets/prueba.jpg');
+        background-size: 25px 50px;
+        background-size: 100% 100%;
+        min-height: 100vh;
+    }
+    
+    ion-row{
+        align-items: center;
+        
+    }
+    
+    .btn_col {
+        margin: 0em 16px 0px 16px;
+        padding-bottom: 20px;
+    }
+    
+    .desplazada{
+        position: relative;
+        top: 5em;
+    }
+    
+    
+
+}
