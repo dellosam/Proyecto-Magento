@@ -23,7 +23,7 @@ export class HomePage {
   }
   
   onPageInvitado(){
-    this.inappBrowser.create('https://telocomproenusa.com/','_blank')
+    this.inappBrowser.create('https://telocomproenusa.com/ve/','_blank', 'location = no')
     
   }
   

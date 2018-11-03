@@ -20,6 +20,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 /*
+    *conversación*
+    
     voy a ingresar un comando para crear una nueva pagina llamada login
     
     bien despues de generar las paginas tenemos que importarlas a este docuimento
