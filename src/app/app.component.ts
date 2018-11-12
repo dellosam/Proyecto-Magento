@@ -65,7 +65,26 @@ export class MyApp {
           console.log('Usuario logado');
           console.log(data);
       
-         
+          storage.get ("dbExists")
+          .then(data=>{//esto es una promesa si esta promesa se ejecuta es porque la consutal salio bien y consigo trae la informacion de dicha variable que se pregunto de storage.get
+            //si data tiene informacion es porque la vairbale existe si no tiene es porque no existe
+              if(data==null){//si data es igual a null es porque la variable no se creo 
+                  alert("No existe variable");
+                  storage.set("dbExists","1")//el crea como lo se .. porque dice set set es mandar info
+                   .then (data=>{
+                      alert("Variable Añadida");
+                      //eso pasara cuando la db no existe aqui es donde crearemos la db junto con la
+                      this.services_db.iniciarDb();
+  
+                   })
+  
+              }else{
+                alert("Existe variable");//cuando ya entra por segunda vez despues de instalar la app saldra este mensaje que ya existe la variablecap
+               // this.dbExiste = data;//si no entonces la variable si existe y se almacena es la variable global que creaste
+  
+              }
+          })
+   
           
           
           
