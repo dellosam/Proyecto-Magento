@@ -4,7 +4,7 @@ import { ServicioProvider } from '../../providers/servicio/servicio';
 import {TabsPage} from '../tabs/tabs'; 
 import { AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Storage } from '@ionic/storage';
+import { BbddServiceProvider} from '../../providers/bbdd-service/bbdd-service';
 
 
 @IonicPage()
@@ -13,42 +13,94 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  
       
   data = {
     user : '',
     pass : ''
-  };
+  }
+    user;
 
-  constructor(public navCtrl: NavController, public parametros: NavParams,
-    private servicio: ServicioProvider, public alertCtrl: AlertController, public inappBrowser: InAppBrowser, private storage: Storage) {
+  valida = false;//
+  constructor(public navCtrl: NavController, 
+              public parametros: NavParams,
+              private servicio: ServicioProvider,
+              public alertCtrl: AlertController, 
+              public inappBrowser: InAppBrowser, 
+              private database: BbddServiceProvider
+              /*,private sqlite: SQLite*/
+              ) 
+   {
+
+
+     
+   
   }
 
+/*
+
+  CreateUser(){
+    this.database.CreateUser(this.data.user, this.data.pass).then((data)=>{
+     console.log(data);
+    }, (error)=>{
+      console.log(error);
+
+    })
+  }
+
+  GetAllUser(){
+    this.database.GetAllUsers().then((data)=>{
+      console.log(data);
+      alert('consulta '+data);
+    }, (error)=>{
+      alert('error 2');
+      console.log(error);
+    })
+
+
+  }*/
+
+//sabesque hace esta funcion?ya te iba a preguntar eso xD
+//esa funcion forma parte del ciclo de vida de una pagina
+//ya te muestro mejor
   ionViewDidLoad() {
-  
+    //this.GetAllUser();
   }
- 
-  IniciarSesion(){
-        if(this.validarCampos()){
-          this.servicio.IniciarSesion(this.data.user, this.data.pass).subscribe(res=>{
-            if(res.json()){
-              this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+this.data.user+'&password='+this.data.pass+'','_blank','location=no,toolbar=no')
-              this.navCtrl.push(TabsPage);
-              window.localStorage.setItem('usuario',this.data.user);
-              window.localStorage.setItem('clave', this.data.pass);
-              console.log(window.localStorage.getItem('usuario'));
-              console.log(window.localStorage.getItem('clave')); 
-            }else{
-              this.mostrarAlerta('Error de credenciales','Usuario o Clave incorrectos')
-            }
-          });
+ //cappcihi?creo q shi...en el coigo anterior yo andaba creando otro usuario y pasandole data creo xD
+ //solo falta que valides si el usuario quiere o no guardar credenciales
+ /**
+  * falta un check al login que diga
+  * desea guardar credenciales [che]ckuncheck? el cuadrito q marcas?si
+  * dime?
+  * en la pagina de ionic en la paste de component sale 
+  * check y hay sale como programarlos
+  * 
+  * pense q seria algo como que al darle iniciar sesion, se abra una ventana q diga, deseas guar
+  * tus datos o algo asi? y
+  *  si le da en aceotar ok. guarde sino no?
+  * si pero lo mas compun y como freddy lo va aquerer en con un check
+  * que sea opcional y no le muestre ese mensaje al usuario cada vez que quiera ingrear
+  * ummm interesante
+  */ 
+ IniciarSesion(){
+    if(this.validarCampos()){
+      this.servicio.IniciarSesion(this.data.user, this.data.pass).subscribe(res=>{
+        if(res.json()){
+          //esta sentencio se ejecuta si el usuario ingreso las contraseñas correctas verdad
+          if(this.valida){
+           // this.CreateUser();
+          }else{
+           
+          }
+          
+          this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+this.data.user+'&password='+this.data.pass,'_blank','location=no,toolbar=no')
+          this.navCtrl.push(TabsPage);
+        }else{
+          this.mostrarAlerta('Error de credenciales','Usuario o Clave incorrectos')
         }
+      });
+    }
   }
-  Inicio(){
-    this.storage.get('usuario').then((resul) => {
-      if(resul){
-      this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+window.localStorage.getItem('usuario')+'&password='+window.localStorage.getItem('usuario')+'','_blank','location=no,toolbar=no')
-  }}); 
-}
 
   mostrarAlerta(titulo, msj) {
     const alert = this.alertCtrl.create({
@@ -72,4 +124,6 @@ export class LoginPage {
     }
     return valido;
   }
+
+
 }

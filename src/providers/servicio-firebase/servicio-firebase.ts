@@ -13,12 +13,7 @@ export class ServicioFirebaseProvider {
    * any es un tipo de dato generico el cual se especifica que puede recibir cualquier tipo de datos u objeto
    */
   adapter : FirebaseListObservable<any>; 
-  //adapter ... ese nombre puede cambiar  como lo quieras poner
-  //su funcion es recibir la consulta de firbease 
-  //para enlistar lo//no acabamos de borrar su lib?
-  //no esa libreria me imagino que salio de causlidad
-  //pero su libreria es esta
-
+  //adapter ... su funcion es recibir la consulta de firbease 
 
   //declaramos la estructura de datos o cargada de datos (payload)
   payload = {
@@ -85,7 +80,7 @@ export class ServicioFirebaseProvider {
     this.payload.fabricante = this.dispositivo.manufacturer.toString();
   } 
   //listo
-//ve abriendo firebase con el correo que se creo .. contraseña cana*4742 te acuerdas del correo?debe estar alli guardado che,ve crreeo q lo guarde en la tablet tmbn (y) 
+
   /*cargarDatos_Temp(){ //dame un chance dejame ver cual es el uuiis s de mi tlfokis si va
     this.payload.uid = 'c46cc1e459a59657';
     this.payload.plataforma = 'android';
@@ -112,19 +107,8 @@ export class ServicioFirebaseProvider {
   ListaDispositivos(){
     this.adapter = this.db.list('/dispositivos/datos/');
     this.adapter.subscribe(res=>{
-      //vamos a parsear la respuesta para que lo convierta en un json
-      //duda sobre... 
-      //aqui funcionaria asi..al registrarme e dira de que dispositivo me registre...
-      //eso tambien se lo pondria al login? creo q ayer hablamso eso
-      //pero no recuerdo
-      // la funcion de registrar.. solo funcionara en registrar 
-      //cada vez que ingrese un nuevo usuario
-      //como freddy aun no ha dado los parametros para eso
-      //lo dejamos como esta para las pruebas 
-      //ahora lo que te estoy enseñado es a consultar los datos de firebase
-      //para que lo puedas usar luego cuando lo veas convenienteokok prfe
       res.map(data=>{
-        console.log(data);
+      console.log(data);
       })
     })
   }
@@ -160,6 +144,5 @@ export class ServicioFirebaseProvider {
  * esos dos diggamos que ahi puedes incorporar una vista generar en cualquier pagina
  * de ionic por ejemplo
  * los menu laterales
- * bien ahora donde vamos a hacer lo que vamos hacer XD
- * 
+
  */

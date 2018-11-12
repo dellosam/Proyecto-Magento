@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Device } from '@ionic-native/device';
-import { IonicStorageModule } from '@ionic/storage';
 
 //paginas
 import { HomePage } from '../pages/home/home';
@@ -21,9 +20,16 @@ import {TabscuentaPage} from '../pages/tabscuenta/tabscuenta';
 import {TabsfavoritosPage} from '../pages/tabsfavoritos/tabsfavoritos';
 import {TabsinicioPage} from '../pages/tabsinicio/tabsinicio';
 
+import {IonicStorageModule} from '@ionic/storage'
+
 
 //providers
 import { ServicioProvider } from '../providers/servicio/servicio';
+import { SQLite} from '@ionic-native/sqlite';
+
+import { BbddServiceProvider} from '../providers/bbdd-service/bbdd-service';
+import {StorageProvider} from '../providers/storage/storage';
+
 
 //firebase
 import firebase from 'firebase';
@@ -32,6 +38,8 @@ import { AngularFireAuth } from 'angularfire2/auth';//este gentiona los usuarios
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { ServicioFirebaseProvider } from '../providers/servicio-firebase/servicio-firebase';
+
+
 
 firebase.initializeApp(FIREBASE_CONFIG);
 
@@ -78,7 +86,9 @@ firebase.initializeApp(FIREBASE_CONFIG);
     StatusBar,//aqui van todos los plugins y servicios separados por ,
     SplashScreen,InAppBrowser,AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServicioProvider, ServicioFirebaseProvider, Device
+    ServicioProvider, ServicioFirebaseProvider, Device, SQLite, BbddServiceProvider,
+    StorageProvider 
+    
   ]
 })
 export class AppModule {}

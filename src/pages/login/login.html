@@ -22,8 +22,11 @@
         
      
         <button ion-button block color="vinotinto" (click)= "IniciarSesion()" >Ingresar</button>   
-        <button ion-button block color="vinotinto" (click)= "Inicio()" >Ingreso</button>  
-
+        <ion-item>
+            <ion-label>Guardar informacion de inicio de sesion </ion-label>
+            <ion-checkbox color="light"  [(ngModel)]="valida"></ion-checkbox>
+        </ion-item>
+        <!--duda?validar jajaj-->
         <ion-list>
             <ion-row class="desplazada">
                 <ion-col>
