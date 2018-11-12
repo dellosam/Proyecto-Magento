@@ -26,7 +26,6 @@ import {IonicStorageModule} from '@ionic/storage'
 //providers
 import { ServicioProvider } from '../providers/servicio/servicio';
 import { SQLite} from '@ionic-native/sqlite';
-
 import { BbddServiceProvider} from '../providers/bbdd-service/bbdd-service';
 import {StorageProvider} from '../providers/storage/storage';
 

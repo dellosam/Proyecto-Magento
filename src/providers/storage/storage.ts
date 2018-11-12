@@ -1,26 +1,41 @@
 import{Component} from '@angular/core';
-import {NavController} from 'ionic-angular'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Storage} from '@ionic/storage';
+//import { IonicPage, NavController,  NavParams } from 'ionic-angular';
 import {LoginPage} from '../../pages/login/login'
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Injectable()
 export class StorageProvider {
 
 
-  constructor(public navCtrl: NavController, 
-              private storage : Storage
+  constructor(/*public navCtrl: NavController,*/
+              private storage : Storage,
+              //public navParams: NavParams
              /* private StorageProvider: StorageProvider*/) {
-   
   }
   
   crearUsuario(){
+    this.storage.get ("dbExists")
+    .then((data)=>{
+      if(data==null){
+        alert("crear variable aqui");//no se como pasarle los datos del login
+      }
+    })
   }
-
+  
   consultarUsuario(){
-
+   //alert("hola");
+    this.storage.get("dbExists")
+    .then((data)=>{
+      if(data==null){
+        alert("No Existe Variable");
+        this.storage.set("dbExists","1");
+        alert("Ya Existe Variable");
+      }
+    })
   }
 
   eliminarUsuario(){

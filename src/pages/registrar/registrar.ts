@@ -18,7 +18,9 @@ import {ServicioFirebaseProvider} from '../../providers/servicio-firebase/servic
  */
 export class RegistrarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private servicio: ServicioFirebaseProvider) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private servicio: ServicioFirebaseProvider) {
   }
 
   ionViewDidLoad() {
