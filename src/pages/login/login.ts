@@ -5,6 +5,7 @@ import {TabsPage} from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BbddServiceProvider} from '../../providers/bbdd-service/bbdd-service';
+import {StorageProvider} from '../../providers/storage/storage';
 
 
 @IonicPage()
@@ -27,14 +28,15 @@ export class LoginPage {
               private servicio: ServicioProvider,
               public alertCtrl: AlertController, 
               public inappBrowser: InAppBrowser, 
-              private database: BbddServiceProvider
+              private database: BbddServiceProvider,
+              private StorageProvider: StorageProvider
               /*,private sqlite: SQLite*/
               ) 
    {
-
-
-     
-   
+  }
+  ionViewDidLoad() {
+    //this.GetAllUser();
+    this.StorageProvider.consultarUsuario();
   }
 
 /*
@@ -63,9 +65,7 @@ export class LoginPage {
 //sabesque hace esta funcion?ya te iba a preguntar eso xD
 //esa funcion forma parte del ciclo de vida de una pagina
 //ya te muestro mejor
-  ionViewDidLoad() {
-    //this.GetAllUser();
-  }
+  
  //cappcihi?creo q shi...en el coigo anterior yo andaba creando otro usuario y pasandole data creo xD
  //solo falta que valides si el usuario quiere o no guardar credenciales
  /**

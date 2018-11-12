@@ -10,7 +10,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 @Injectable()
 export class StorageProvider {
 
-
+  //datoslogin : string = "../pages/LoginPage/L";
   constructor(/*public navCtrl: NavController,*/
               private storage : Storage,
               //public navParams: NavParams
@@ -27,7 +27,7 @@ export class StorageProvider {
   }
   
   consultarUsuario(){
-   //alert("hola");
+   alert("hola");
     this.storage.get("dbExists")
     .then((data)=>{
       if(data==null){
