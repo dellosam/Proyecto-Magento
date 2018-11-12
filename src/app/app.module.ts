@@ -7,8 +7,7 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Device } from '@ionic-native/device';
-//momentico..revisare si puedo ver ese termostato sin desarmar el aire.. q va esto es un horno
-//vale yo voy viendo aqui que pedo pasa. ok cualquier cosa me pones muysica y ya se q me llamas jeje
+import { IonicStorageModule } from '@ionic/storage';
 
 //paginas
 import { HomePage } from '../pages/home/home';
@@ -58,7 +57,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     IonicModule.forRoot(MyApp),
     HttpModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
