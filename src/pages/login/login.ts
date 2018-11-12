@@ -5,6 +5,7 @@ import {TabsPage} from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BbddServiceProvider} from '../../providers/bbdd-service/bbdd-service';
+import {Storage} from '@ionic/storage';
 import {StorageProvider} from '../../providers/storage/storage';
 
 
@@ -20,7 +21,8 @@ export class LoginPage {
     user : '',
     pass : ''
   }
-    user;
+  
+  user;
 
   valida = false;//
   constructor(public navCtrl: NavController, 
@@ -29,7 +31,8 @@ export class LoginPage {
               public alertCtrl: AlertController, 
               public inappBrowser: InAppBrowser, 
               private database: BbddServiceProvider,
-              private StorageProvider: StorageProvider
+              private StorageProvider: StorageProvider,
+              private storage: Storage
               /*,private sqlite: SQLite*/
               ) 
    {
@@ -90,6 +93,7 @@ export class LoginPage {
               
           this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+this.data.user+'&password='+this.data.pass,'_blank','location=no,toolbar=no')
           //this.navCtrl.push(TabsPage);
+          this.StorageProvider.crearUsuario(this.data.user,this.data.pass);
         }else{
           this.mostrarAlerta('Error de credenciales','Usuario o Clave incorrectos')
         }

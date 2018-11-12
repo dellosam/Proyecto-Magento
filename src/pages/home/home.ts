@@ -4,14 +4,14 @@ import { LoginPage } from '../../pages/login/login';
 import { RegistrarPage } from '../../pages/registrar/registrar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Query } from '@firebase/database';
+import {StorageProvider} from '../../providers/storage/storage';
 Query
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-    
-  constructor(private navCtrl: NavController, private inappBrowser: InAppBrowser) {
+  constructor(private navCtrl: NavController, private inappBrowser: InAppBrowser,private StorageProvider: StorageProvider) {
       
   }
   //lo quieres hacer?pero no entiendo q se hara
@@ -19,18 +19,17 @@ export class HomePage {
   //primero importas las paginas a las que quieres navegar
   //esta funcion la dejas de referencia
   onPageLogin(){
-    this.navCtrl.push(LoginPage);
+    if (this.StorageProvider.EMAIL != null)
+    {
+      this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+this.StorageProvider.EMAIL+'&password='+this.StorageProvider.clave+'','_blank','location=no,toolbar=no')
+    }else{
+      this.navCtrl.push(LoginPage);
+    }
   }
   
   onPageInvitado(){
     this.inappBrowser.create('https://telocomproenusa.com/ve/','_blank','location=no,toolbar=no')
-  }//cambiar aqui el link y pasarle?
-  /**
-   * lo que vamos hacer es abrir la pagina 
-   * tal cual como esta en esa funcion
-   * pero en la pagina de login al iniciar sesion ok
-   */
-  
+  }
   
   onPageRegistrar(){
     this.navCtrl.push(RegistrarPage);

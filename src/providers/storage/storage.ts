@@ -9,20 +9,38 @@ import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable()
 export class StorageProvider {
+  EMAIL;
+  clave;
 
-  //datoslogin : string = "../pages/LoginPage/L";
   constructor(/*public navCtrl: NavController,*/
               private storage : Storage,
               //public navParams: NavParams
              /* private StorageProvider: StorageProvider*/) {
   }
   
-  crearUsuario(){
-  
+  crearUsuario(email,clave){
+    this.storage.get ("EMAIL")
+    .then((data)=>{
+      if(data==null){
+        this.storage.set("EMAIL",email);
+        this.storage.set("clave",clave)
+        }
+    })
   }
   
   consultarUsuario(){
-
+    this.storage.get ("EMAIL")
+    .then((data)=>{
+      if(data!=null){
+        this.EMAIL = data;
+      }
+    });
+    this.storage.get ("clave")
+    .then((data)=>{
+      if(data!=null){
+        this.clave = data;
+      }
+    });
   }
 
   eliminarUsuario(){
