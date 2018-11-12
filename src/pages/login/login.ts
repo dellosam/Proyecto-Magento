@@ -19,10 +19,6 @@ export class LoginPage {
     pass : ''
   };
 
-  //key1: '';
-  //contrasena: '';
-  //rootPage:any;
-
   constructor(public navCtrl: NavController, public parametros: NavParams,
     private servicio: ServicioProvider, public alertCtrl: AlertController, public inappBrowser: InAppBrowser, private storage: Storage) {
   }
