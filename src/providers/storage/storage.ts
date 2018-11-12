@@ -9,9 +9,6 @@ import {LoginPage} from '../../pages/login/login'
 @Injectable()
 export class StorageProvider {
 
-  usuario : '';
-  contrasena: '';
-
 
   constructor(public navCtrl: NavController, 
               private storage : Storage
