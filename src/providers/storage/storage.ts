@@ -18,24 +18,11 @@ export class StorageProvider {
   }
   
   crearUsuario(){
-    this.storage.get ("dbExists")
-    .then((data)=>{
-      if(data==null){
-        alert("crear variable aqui");//no se como pasarle los datos del login
-      }
-    })
+  
   }
   
   consultarUsuario(){
-   alert("hola");
-    this.storage.get("dbExists")
-    .then((data)=>{
-      if(data==null){
-        alert("No Existe Variable");
-        this.storage.set("dbExists","1");
-        alert("Ya Existe Variable");
-      }
-    })
+
   }
 
   eliminarUsuario(){

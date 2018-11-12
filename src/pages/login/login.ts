@@ -85,16 +85,11 @@ export class LoginPage {
  IniciarSesion(){
     if(this.validarCampos()){
       this.servicio.IniciarSesion(this.data.user, this.data.pass).subscribe(res=>{
-        if(res.json()){
-          //esta sentencio se ejecuta si el usuario ingreso las contraseñas correctas verdad
-          if(this.valida){
-           // this.CreateUser();
-          }else{
-           
-          }
-          
+     
+         if(res.json()){
+              
           this.inappBrowser.create('https://telocomproenusa.com/ve/ionic_login_page.php?email='+this.data.user+'&password='+this.data.pass,'_blank','location=no,toolbar=no')
-          this.navCtrl.push(TabsPage);
+          //this.navCtrl.push(TabsPage);
         }else{
           this.mostrarAlerta('Error de credenciales','Usuario o Clave incorrectos')
         }
